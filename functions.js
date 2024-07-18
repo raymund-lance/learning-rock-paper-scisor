@@ -34,5 +34,45 @@ console.log(computerStorage);
 
 
 
+const selectPlayer = document.querySelector("#player");
+
+for(let i = 0; i < 3; i++) {
+    let createButton = document.createElement("button");
+    if(i == 0) {
+        createButton.id = "rock";
+        createButton.classList.add("button-pick");
+        createButton.textContent = rock;
+        
+    } else if(i == 1) {
+        createButton.id = "paper";
+        createButton.classList.add("button-pick");
+        createButton.textContent = paper;
+    } else if(i == 2) {
+        createButton.id = "scissor";
+        createButton.classList.add("button-pick");
+        createButton.textContent = scissor;
+    }
+    selectPlayer.appendChild(createButton);
+}
+
+let playerPick = "";
+let selectButtonRock = document.querySelector("#rock");
+selectButtonRock.addEventListener("click", () => {
+    playerPick = rock;
+});
+
+let selectButtonPaper = document.querySelector("#paper");
+selectButtonPaper.addEventListener("click", () => {
+    playerPick = paper;
+});
+
+let selectButtonScissor = document.querySelector("#scissor");
+selectButtonScissor.addEventListener("click", () => {
+    playerPick = scissor;
+});
+
+let playerStorage = playerPick;
+console.log(playerStorage);
+
 
 
