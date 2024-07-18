@@ -1,3 +1,6 @@
+var computerScore = 0,
+    playerScore = 0;
+
 // Function to create and append a button
 function createButton(choice) {
     const button = document.createElement('button');
@@ -12,6 +15,7 @@ function createButton(choice) {
 function playGame(userChoice) {
     const choices = ['rock', 'paper', 'scissors'];
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+    document.querySelector('#computer').textContent = "Computer: " + computerChoice;
 
     let result = '';
     if (userChoice === computerChoice) {
