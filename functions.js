@@ -1,78 +1,30 @@
-var rock = "rock",
-    paper = "paper",
-    scissor = "scissors",
-    computerScore = 0,
-    playerScore = 0,
-    description = "";
-
-const computerAi = document.querySelector("#computer");
-const computerView = document.createElement("div");
-computerView.classList.add("computer-visual");
-
-function getComputerChoice(computerAnswer){
-    //random number for random computerAnswer
-    let random = Math.floor(Math.random()*3) + 1;
-    switch(random) {
-        case 1:
-            computerAnswer = rock;
-            break;
-        case 2:
-            computerAnswer = paper;
-            break;
-        case 3:
-            computerAnswer = scissor;
-            break;
-    }
-
-    return computerAnswer;
-}
-//output of getComputerChoice function
-let computerStorage = getComputerChoice();
-computerView.textContent = computerStorage;
-computerAi.appendChild(computerView);
-console.log(computerStorage);
-
-
-
-const selectPlayer = document.querySelector("#player");
-
-for(let i = 0; i < 3; i++) {
-    let createButton = document.createElement("button");
-    if(i == 0) {
-        createButton.id = "rock";
-        createButton.classList.add("button-pick");
-        createButton.textContent = rock;
-        
-    } else if(i == 1) {
-        createButton.id = "paper";
-        createButton.classList.add("button-pick");
-        createButton.textContent = paper;
-    } else if(i == 2) {
-        createButton.id = "scissor";
-        createButton.classList.add("button-pick");
-        createButton.textContent = scissor;
-    }
-    selectPlayer.appendChild(createButton);
+// Function to create and append a button
+function createButton(choice) {
+    const button = document.createElement('button');
+    button.textContent = choice.charAt(0).toUpperCase() + choice.slice(1);
+    button.onclick = () => playGame(choice);
+    document.querySelector('#buttons').appendChild(button);
 }
 
-let playerPick = "";
-let selectButtonRock = document.querySelector("#rock");
-selectButtonRock.addEventListener("click", () => {
-    playerPick = rock;
-});
+// Create buttons for rock, paper, and scissors
+['rock', 'paper', 'scissors'].forEach(choice => createButton(choice));
 
-let selectButtonPaper = document.querySelector("#paper");
-selectButtonPaper.addEventListener("click", () => {
-    playerPick = paper;
-});
+function playGame(userChoice) {
+    const choices = ['rock', 'paper', 'scissors'];
+    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
-let selectButtonScissor = document.querySelector("#scissor");
-selectButtonScissor.addEventListener("click", () => {
-    playerPick = scissor;
-});
+    let result = '';
+    if (userChoice === computerChoice) {
+        result = "It's a tie!";
+    } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'paper' && computerChoice === 'rock') ||
+        (userChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+        result = `You win! ${userChoice} beats ${computerChoice}.`;
+    } else {
+        result = `You lose! ${computerChoice} beats ${userChoice}.`;
+    }
 
-let playerStorage = playerPick;
-console.log(playerStorage);
-
-
-
+    document.querySelector('#winner').textContent = result;
+}
