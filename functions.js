@@ -26,30 +26,11 @@ function getComputerChoice(computerAnswer){
 
     return computerAnswer;
 }
+//output of getComputerChoice function
 let computerStorage = getComputerChoice();
 computerView.textContent = computerStorage;
 computerAi.appendChild(computerView);
-
-const playerContainer = document.querySelector("#player");
-
-
-for(let i = 0; i < 3; i++) {
-    const playerPick = document.createElement("button");
-    playerPick.classList.add("player-pick");
-    let buttonName = "";
-    switch(i) {
-        case 0:
-            buttonName = rock;
-            break;
-        case 1:
-            buttonName = paper;
-            break;
-        case 2:
-            buttonName = scissor;
-    }
-    playerPick.textContent = buttonName;
-    playerContainer.appendChild(playerPick);
-}
+console.log(computerStorage);
 
 
 
